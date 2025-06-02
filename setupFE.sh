@@ -1,12 +1,15 @@
 #!/bin/bash
+set -e
 
-exec > >(tee -a /var/log/setup.log) 2>&1
+# Log start
+echo "=== SETUP SCRIPT START: $(date) ==="
 
-echo "[SETUP] Updating system packages..."
-sudo yum update -y
+# Update & install dependencies
+sudo apt-get update
 
 echo "[SETUP] Installing required packages..."
-sudo yum install -y git docker docker-compose nginx awscli jq
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common jq unzip git docker docker-compose awscli nginx
+
 
 # echo "[SETUP] Configuring AWS CLI..."
 # echo "Configuring AWS CLI..."
@@ -24,8 +27,8 @@ sudo systemctl enable nginx
 sudo systemctl start nginx
 
 echo "[SETUP] Installing Certbot for Let's Encrypt..."
-sudo yum install -y epel-release
-sudo yum install -y certbot python3-certbot-nginx
+sudo apt-get install -y epel-release
+sudo apt-get install -y certbot python3-certbot-nginx
 
 echo "[SETUP] Creating app directory..."
 mkdir -p /home/ubuntu/app
