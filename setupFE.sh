@@ -28,15 +28,15 @@ sudo yum install -y epel-release
 sudo yum install -y certbot python3-certbot-nginx
 
 echo "[SETUP] Creating app directory..."
-mkdir -p /home/ec2-user/app
-cd /home/ec2-user/app
-sudo chown -R ec2-user:ec2-user .
+mkdir -p /home/ubuntu/app
+cd /home/ubuntu/app
+sudo chown -R ubuntu:ubuntu .
 sudo chmod -R 755 .
 
 echo "[SETUP] Cloning repository..."
 git clone https://github.com/kyojin2311/TTDN.git .
 cd TTDN
-sudo chown -R ec2-user:ec2-user .
+sudo chown -R ubuntu:ubuntu .
 sudo chmod -R 755 .
 
 echo "[SETUP] Fetching environment variables from AWS Secrets Manager..."
