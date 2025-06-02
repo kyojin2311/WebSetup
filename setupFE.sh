@@ -1,15 +1,13 @@
 #!/bin/bash
-set -e
 
-# Log start
-echo "=== SETUP SCRIPT START: $(date) ==="
+exec > >(tee -a /var/log/setup.log) 2>&1
 
-# Update & install dependencies
-sudo apt-get update
+echo "[SETUP] Updating system packages..."
+sudo apt-get update -y
+sudo apt-get upgrade -y
 
 echo "[SETUP] Installing required packages..."
-sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common jq unzip git docker docker-compose awscli nginx
-
+sudo apt-get install -y git docker.io docker-compose nginx awscli jq curl
 
 # echo "[SETUP] Configuring AWS CLI..."
 # echo "Configuring AWS CLI..."
@@ -22,12 +20,13 @@ echo "[SETUP] Enabling and starting Docker..."
 sudo systemctl enable docker
 sudo systemctl start docker
 
+sudo usermod -aG docker ubuntu
+
 echo "[SETUP] Enabling and starting Nginx..."
 sudo systemctl enable nginx
 sudo systemctl start nginx
 
 echo "[SETUP] Installing Certbot for Let's Encrypt..."
-sudo apt-get install -y epel-release
 sudo apt-get install -y certbot python3-certbot-nginx
 
 echo "[SETUP] Creating app directory..."
@@ -106,6 +105,3 @@ echo "[SETUP] Setting up Let's Encrypt SSL..."
 #     -m phamvanthach2003@gmail.com
 
 echo "[SETUP] Setup complete!"
-
-# # Setup auto-renewal for SSL
-# echo "0 0 * * * root certbot renew --quiet" | sudo tee -a /etc/crontab > /dev/null 
