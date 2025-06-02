@@ -6,8 +6,18 @@ echo "[SETUP] Updating system packages..."
 sudo apt-get update -y
 
 echo "[SETUP] Installing required packages..."
-sudo apt-get install -y git docker.io docker-compose nginx awscli jq curl
+sudo apt-get install -y git nginx awscli jq curl
 
+
+# Install Docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+# Install Docker Compose
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 # echo "[SETUP] Configuring AWS CLI..."
 # echo "Configuring AWS CLI..."
 # aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
