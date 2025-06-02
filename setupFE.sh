@@ -4,7 +4,6 @@ exec > >(tee -a /var/log/setup.log) 2>&1
 
 echo "[SETUP] Updating system packages..."
 sudo apt-get update -y
-sudo apt-get upgrade -y
 
 echo "[SETUP] Installing required packages..."
 sudo apt-get install -y git docker.io docker-compose nginx awscli jq curl
