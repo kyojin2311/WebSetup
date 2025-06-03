@@ -101,11 +101,8 @@ echo "[SETUP] Testing Nginx configuration..."
 sudo ln -sf /etc/nginx/sites-available/ttdn.thachpv.id.vn /etc/nginx/sites-enabled/
 sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t
-sudo systemctl restart nginx
-sudo nginx -t
-
 echo "[SETUP] Reloading Nginx..."
-sudo systemctl reload nginx
+sudo systemctl restart nginx
 
 echo "[SETUP] Building and running the application with Docker Compose..."
 sudo docker-compose up -d --build
