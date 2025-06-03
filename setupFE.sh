@@ -60,7 +60,7 @@ echo "[SETUP] Converting env JSON to .env file..."
 cat .env.json | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > .env
 
 echo "[SETUP] Writing Nginx config..."
-sudo tee /etc/nginx/conf.d/todo.conf > /dev/null <<EOL
+sudo tee /etc/nginx/sites-available/ttdn.thachpv.id.vn > /dev/null << 'NGINX'
 server {
     listen 80;
     server_name ttdn.thachpv.id.vn;
@@ -95,9 +95,13 @@ server {
         add_header X-Cache-Status \$upstream_cache_status;
     }
 }
-EOL
+NGINX
 
 echo "[SETUP] Testing Nginx configuration..."
+sudo ln -sf /etc/nginx/sites-available/ttdn.thachpv.id.vn /etc/nginx/sites-enabled/
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo nginx -t
+sudo systemctl restart nginx
 sudo nginx -t
 
 echo "[SETUP] Reloading Nginx..."
