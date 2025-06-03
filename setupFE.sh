@@ -41,7 +41,7 @@ sudo apt-get install -y certbot python3-certbot-nginx
 cd /home/ubuntu
 
 echo "[SETUP] Cloning repository..."
-git clone https://github.com/kyojin2311/TTDN.git .
+git clone https://github.com/kyojin2311/TTDN.git
 cd TTDN
 sudo chown -R ubuntu:ubuntu .
 sudo chmod -R 755 .
