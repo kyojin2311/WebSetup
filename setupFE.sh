@@ -38,11 +38,7 @@ sudo systemctl start nginx
 echo "[SETUP] Installing Certbot for Let's Encrypt..."
 sudo apt-get install -y certbot python3-certbot-nginx
 
-echo "[SETUP] Creating app directory..."
-mkdir -p /home/ubuntu/app
-cd /home/ubuntu/app
-sudo chown -R ubuntu:ubuntu .
-sudo chmod -R 755 .
+cd /home/ubuntu
 
 echo "[SETUP] Cloning repository..."
 git clone https://github.com/kyojin2311/TTDN.git .
