@@ -49,7 +49,7 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 # (Tùy chọn) Lấy SSL certificate từ Let's Encrypt (bỏ comment nếu muốn tự động)
-# sudo certbot --nginx -d ttdn-apis.thachpv.id.vn --non-interactive --agree-tos --email your-email@example.com
+sudo certbot --nginx -d ttdn-apis.thachpv.id.vn --non-interactive --agree-tos --email phamvanthach2003@gmail.com
 
 # Clone repository
 cd /home/ubuntu
