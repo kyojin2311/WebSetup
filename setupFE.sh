@@ -84,10 +84,10 @@ echo "[SETUP] Building and running the application with Docker Compose..."
 sudo docker-compose up -d --build
 
 echo "[SETUP] Setting up Let's Encrypt SSL..."
-# sudo certbot --nginx \
-#     -d ttdn.thachpv.id.vn \
-#     --non-interactive \
-#     --agree-tos \
-#     -m phamvanthach2003@gmail.com
+sudo certbot --nginx \
+    -d ttdn.thachpv.id.vn \
+    --non-interactive \
+    --agree-tos \
+    -m phamvanthach2003@gmail.com
 
 echo "[SETUP] Setup complete!"
