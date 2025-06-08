@@ -60,7 +60,7 @@ sudo chown -R ubuntu:ubuntu .
 sudo chmod -R 755 .
 
 # Lấy env từ AWS Secrets Manager (yêu cầu đã cài jq và AWS CLI, và instance có quyền truy cập)
-aws secretsmanager get-secret-value --secret-id prod/todolist-be/env --query SecretString --output text > .env.json
+aws secretsmanager get-secret-value --secret-id prod/be/env --query SecretString --output text > .env.json
 cat .env.json | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > .env
 
 # Build & run app bằng Docker Compose
