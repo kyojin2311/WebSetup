@@ -48,7 +48,7 @@ sudo chmod -R 755 .
 
 echo "[SETUP] Fetching environment variables from AWS Secrets Manager..."
 aws secretsmanager get-secret-value \
-    --secret-id prod/todolist/env \
+    --secret-id prod/fe/env \
     --query SecretString \
     --output text > .env.json
 
